@@ -4,6 +4,7 @@ import { Button } from "./ui/button";
 
 import { useState } from "react";
 import Link from "next/link";
+import Container from "./ui/container";
 
 interface NavItem {
   label: string;
@@ -16,13 +17,6 @@ interface DropdownProps {
 
 export function Dropdown({ items }: DropdownProps) {
   const [isOpen, setIsOpen] = useState(false);
-
-  const navItems = [
-    { label: "Home", url: "/" },
-    { label: "Services", url: "/services" },
-    { label: "About", url: "/about" },
-    { label: "Contact", url: "/contact" },
-  ];
 
   return (
     <div className="m-1 relative inline-flex md:hidden">
@@ -85,29 +79,33 @@ export default function Navbar() {
   ];
 
   return (
-    <header className="flex items-center justify-between px-4 border-b py-2">
-      <span>
-        <Image src={"/logo.png"} height={50} width={50} alt="logo" />
-      </span>
+    <header className=" border-b py-2">
+      <Container>
+        <div className="flex items-center justify-between ">
+          <span>
+            <Image src={"/logo.png"} height={50} width={50} alt="logo" />
+          </span>
 
-      <nav className="p-1 space-y-0.5 hidden md:flex w-md justify-between">
-        {navItems.map((item, idx) => (
-          <Link
-            key={idx}
-            href={item.url}
-            className="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:outline-hidden focus:bg-gray-100 dark:text-neutral-400 dark:hover:bg-neutral-700 dark:hover:text-neutral-300 dark:focus:bg-neutral-700"
-          >
-            {item.label}
-          </Link>
-        ))}
-      </nav>
+          <nav className="p-1 space-y-0.5 hidden md:flex w-md justify-between">
+            {navItems.map((item, idx) => (
+              <Link
+                key={idx}
+                href={item.url}
+                className="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:outline-hidden focus:bg-gray-100 dark:text-neutral-400 dark:hover:bg-neutral-700 dark:hover:text-neutral-300 dark:focus:bg-neutral-700"
+              >
+                {item.label}
+              </Link>
+            ))}
+          </nav>
 
-      <div>
-        <Dropdown items={navItems} />
-        <Link href={"/contact"}>
-          <Button>Buy A House</Button>
-        </Link>
-      </div>
+          <div>
+            <Dropdown items={navItems} />
+            <Link href={"/contact"}>
+              <Button>Buy A House</Button>
+            </Link>
+          </div>
+        </div>
+      </Container>
     </header>
   );
 }
