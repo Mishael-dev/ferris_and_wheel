@@ -70,6 +70,15 @@ export function Dropdown({ items }: DropdownProps) {
   );
 }
 
+function Logo() {
+  return (
+    <span>
+      <Image className="hidden md:block" src={"/logolg.svg"} height={30} width={150} alt="logo" />
+      <Image className="block md:hidden" src={"/logosm.svg"} height={45} width={45} alt="logo" />
+    </span>
+  );
+}
+
 export default function Navbar() {
   const navItems = [
     { label: "Home", url: "/" },
@@ -82,9 +91,7 @@ export default function Navbar() {
     <header className=" border-b py-2">
       <Container>
         <div className="flex items-center justify-between ">
-          <span>
-            <Image src={"/logo.png"} height={50} width={50} alt="logo" />
-          </span>
+          <Logo />
 
           <nav className="p-1 space-y-0.5 hidden md:flex w-md justify-between">
             {navItems.map((item, idx) => (
